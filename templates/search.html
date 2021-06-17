@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if messages %}
+	            {% for message in messages %}
+	                <p {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %}> {{message}} </p>
+	            {% endfor %}
+	        {% endif %}
     <section id="archive">
         <header class="major">
             <h2>Search Result</h2>
@@ -8,7 +13,7 @@
         <div>
             {% for blog in blogs %}
                 <article>
-                    <a href="{% url 'content:blog_single' blog.slug %}" title="{{ blog.title }}">
+                    <a href="{% url 'content:blog_single' blog.slug blog.id %}" title="{{ blog.title }}">
                         <h3>{{ blog.title }}</h3>
                     </a>                    
                     <p>{{ blog.content | safe | truncatewords_html:10 }}</p>
@@ -18,7 +23,7 @@
             
             {% for videocast in videocasts %}
                 <article>
-                    <a href="{% url 'content:videocast_single' videocast.slug %}" title="{{ videocast.title }}">
+                    <a href="{% url 'content:videocast_single' videocast.slug videocast.id %}" title="{{ videocast.title }}">
                         <h3>{{ videocast.title }}</h3>
                     </a>                    
                     <p>{{ videocast.content | safe | truncatewords_html:10 }}</p>
@@ -28,7 +33,7 @@
 
             {% for podcast in podcasts %}
                 <article>
-                    <a href="{% url 'content:podcast_single' podcast.slug %}" title="{{ podcast.title }}">
+                    <a href="{% url 'content:podcast_single' podcast.slug podcast.id %}" title="{{ podcast.title }}">
                         <h3>{{ podcast.title }}</h3>
                     </a>                    
                     <p>{{ podcast.content | safe | truncatewords_html:10 }}</p>

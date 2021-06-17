@@ -31,7 +31,7 @@
                 </div>
                 {% if user.id == request.user.id %}
                     <div class="profile-container3">
-                        <a href="{% url 'content:edit_profile' 1 %}"> <button class="btn btn-sm rounded"><i class="fas fa-pencil-alt me-2"></i>Edit profile</button></a> 
+                        <a href="{% url 'content:edit_profile' user.id  %}"> <button class="btn btn-sm rounded"><i class="fas fa-pencil-alt me-2"></i>Edit profile</button></a> 
                     </div>
                 {% endif %}
             </div>

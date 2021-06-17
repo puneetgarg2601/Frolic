@@ -2,7 +2,13 @@
 {% load i18n %}
 
 {% block content %}
+{% if messages %}
+	            {% for message in messages %}
+	                <p {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %}> {{message}} </p>
+	            {% endfor %}
+	        {% endif %}
     <!-- Section - archive -->
+
     <section id="archive">
         <header class="major">
             <h2>

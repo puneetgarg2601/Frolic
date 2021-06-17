@@ -11,12 +11,10 @@
 		<div class="col-12 col-12-small">
 
 	        {% if messages %}
-				<h2>{% translate 'Messages :' %}</h2>
-				<ul>
 	            {% for message in messages %}
-	                <li>{{ message }}</li>
+	                <p {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %}> {{message}} </p>
 	            {% endfor %}
-				</ul>
+				</ul
 	        {% endif %}
 
             {% if form.errors %}

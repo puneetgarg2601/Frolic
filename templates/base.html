@@ -94,7 +94,7 @@
                 </header>
                 <ul>
                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'content:profile' 1 'blog' %}">{% translate 'Profile'  %}</a></li>
+                        <li><a href="{% url 'content:profile' request.user.id 'blog' %}">{% translate 'Profile'  %}</a></li>
                     {% endif %}
                     <li><a href="{% url 'content:index' %}">{% translate 'Home Page' %}</a></li>
                     <li><a href="{% url 'content:blog' %}">{% translate 'Blog' %}</a></li>
@@ -160,11 +160,11 @@
                 <div class="mini-posts">
                     {% for podcast in podcasts %}
                         <article>
-                            <a href="{% url 'content:podcast_single' podcast.slug %}" class="image">
+                            <a href="{% url 'content:podcast_single' podcast.slug podcast.id %}" class="image">
                                 <img src="{{ podcast.thumbnail.url }}" alt="{{ podcast.title }}"/>
                             </a>
                             <p>{{ podcast.content | safe |truncatewords_html:15 }}</p>
-                            <a href="{% url 'content:podcast_single' podcast.slug %}" class="button">{% translate 'More' %}</a>
+                            <a href="{% url 'content:podcast_single' podcast.slug podcast.id %}" class="button">{% translate 'More' %}</a>
                         </article>
                     {% endfor %}
                 </div>

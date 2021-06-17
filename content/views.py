@@ -246,16 +246,16 @@ class ProfileView(View):
     def get(self, request, id, query):
         usr = User.objects.get(pk=id)
         if query == 'blog':
-            blogs = models.Blog.objects.all()
+            blogs = models.Blog.objects.filter(user=usr)
             return render(request, 'content/profile_blog.html', {'user':usr, 'object_list':blogs, 'blog':'active'})
         if query == 'video':
-            videos = models.Videocast.objects.all()
+            videos = models.Videocast.objects.filter(user=usr)
             return render(request, 'content/profile_videocast.html', {'user':usr, 'object_list':videos, 'video':'active'})
         if query == 'audio':
-            audios = models.Podcast.objects.all()
+            audios = models.Podcast.objects.filter(user=usr)
             return render(request, 'content/profile_podcast.html', {'user':usr, 'object_list':audios, 'audio':'active'})
         if query == 'skill':
-            skills = models.Skill.objects.all()
+            skills = models.Skill.objects.filter(user=usr)
             return render(request, 'content/profile_skill.html', {'user':usr, 'skills':skills, 'skill':'active'})
 
 @method_decorator(login_required, name='dispatch')
@@ -384,14 +384,14 @@ class DeleteBlogView(View):
 
 @method_decorator(login_required, name='dispatch')
 class DeleteVideocastView(View):
-    def post(self, request, id):
+    def post(self, request, slug, id):
         pi = models.Videocast.objects.get(Q(id=id) and Q(slug=slug))
         if pi.user == request.user:
             pi.delete()
             messages.success(request, 'Videocast Deleted Successfully!!')
             return redirect('content:profile', id= request.user.id, query= 'video')
 
-    def get(self, request, id):
+    def get(self, request, slug, id):
         pi = models.Videocast.objects.get(Q(id=id) and Q(slug=slug))
         if pi.user == request.user:
             return render(request, 'content/delete_videocast.html')

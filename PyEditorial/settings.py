@@ -221,3 +221,4 @@ CONSTANCE_CONFIG_FIELDSETS = {
 LOGIN_REDIRECT_URL = 'content:index'
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'content:index'
+EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'

@@ -106,13 +106,16 @@ class Videocast(models.Model):
         default=True,
         help_text=_('Will this video be published?')
     )
-    video = models.CharField(
+    video_link = models.CharField(
         max_length=256,
-        verbose_name=_('Video link :')
+        verbose_name=_('Video link :'),
+        blank=True
+    
     )
-    videosite = models.FileField(
+    video = models.FileField(
         upload_to='content/videocast/video/',
-        verbose_name=_('Video Site :')
+        verbose_name=_('Video :'),
+        blank=True
     )
     category = models.ManyToManyField(
         VideocastCategory,
@@ -162,7 +165,7 @@ class Podcast(models.Model):
         verbose_name=_('Slug :'),
         unique=True,
         null=False,
-        blank=False
+        blank=True
     )
     thumbnail = models.ImageField(
         upload_to='content/podcast/thumbnail/',

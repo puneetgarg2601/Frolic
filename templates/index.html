@@ -2,6 +2,11 @@
 {% load i18n %}
 
 {% block content %}
+{% if messages %}
+	            {% for message in messages %}
+	                <p {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %}> {{message}} </p>
+	            {% endfor %}
+	        {% endif %}
     {% for last_post in last_blog %}
         <!-- Banner -->
         <section id="banner">

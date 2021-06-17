@@ -11,12 +11,9 @@
 		<div class="col-12 col-12-small">
 
 	        {% if messages %}
-				<h2>{% translate 'Messages :' %}</h2>
-				<ul>
 	            {% for message in messages %}
-	                <li>{{ message }}</li>
+	                <p {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %}> {{message}} </p>
 	            {% endfor %}
-				</ul>
 	        {% endif %}
 
             {% if form.errors %}
@@ -56,12 +53,12 @@
 
 
 					<div class="col-6">
-						{{ form.videosite.label_tag }}
-						{{ form.videosite }}
-					</div>
-					<div class="col-6">
 						{{ form.video.label_tag }}
 						{{ form.video }}
+					</div>
+					<div class="col-6">
+						{{ form.video_link.label_tag }}
+						{{ form.video_link }}
 					</div>
 					<div class="col-6">
 						{{ form.category.label_tag }}
