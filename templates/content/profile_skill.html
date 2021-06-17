@@ -1,0 +1,46 @@
+{% extends 'content/profile.html' %}
+{% load static %}
+{% load i18n %}
+{% block post %}
+    {% if messages %}
+        {% for message in messages %}
+            <p {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %}>
+                {{message}}
+            </p>
+        {% endfor %}
+    {% endif %}
+    <div class="mx-3 pb-3">
+        {% if request.user.is_authenticated %}
+        <section id="skills">
+            <header class="major mt-5">
+                <h2>{% translate 'Skills' %}</h2>
+            </header>
+            <div class="features">
+                {% for skill in skills %}
+                    <article>
+                        <span class="icon solid fa-{{ skill.level }}"></span>
+                        <div class="content">
+                            <h3>{{ skill.title }}</h3>
+                            <p>{{ skill.description| safe | truncatewords_html:30 }}</p>
+                            <ul class="actions">
+                                {% if user.id == request.user.id %}
+                                    <li> 
+                                        <a href="{% url 'content:edit_skill' skill.id %}" class="button" title="Edit">
+                                            {% translate 'Edit' %}
+                                        </a>
+                                    </li>
+                                    <li >
+                                        <a href="{% url 'content:delete_skill' skill.id %}" class="button" title="Delete">
+                                            {% translate 'Delete' %}
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+    </div>
+{% endblock post %}

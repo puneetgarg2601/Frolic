@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<section>
+    <header class="main">
+        <h1>{% translate 'Create Account' %}</h1>
+    </header>
+	<div class="row">
+		<div class="col-6 col-12-small">
+			<form method="post" id="auth_form">
+				{% csrf_token %}
+				{% for fm in form %}
+					<div>
+					{{fm.label_tag}} {{fm}} <small style="color:red;">{{fm.errors|striptags}}</small>
+					</div>
+				{% endfor %}
+				<input type="submit" value="{% translate 'Create' %}" class="button primary" style="margin-top: 10px;">
+				<a href="{% url 'login' %}" class="button" style="margin-top: 10px;">{% translate 'Login' %}</a>
+			</form>
+		</div>
+	</div>
+</section>
+{% endblock content %}

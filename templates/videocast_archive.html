@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <!-- Section - archive -->
+    <section id="archive">
+        <header class="major">
+            <h2>
+                {% translate 'Videocast Archive' %}
+            </h2>
+        </header>
+        <div class="posts">
+            {% for object in object_list %}
+                <article>
+                    <a href="{% url 'content:videocast_single' object.slug object.id %}" class="image" title="{{ object.title }}">
+                        <img src="{{ object.thumbnail.url }}" alt="{{ object.title }}"/>
+                    </a>
+                    <h3>{{ object.title }}</h3>
+                    <p> <a href=" {% url 'content:profile' object.user.id 'videocast' %} "> <span class="badge bg-secondary">{{ object.user.username }}</span></p></a>
+                    <p>{{ object.content | safe | truncatewords_html:30 }}</p>
+                    <ul class="actions">
+                        <li>
+                            <a href="{% url 'content:videocast_single' object.slug object.id %}" class="button" title="{{ object.title }}">
+                                {% translate 'More' %}
+                            </a>
+                        </li>
+                    </ul>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+    <!-- /Section - archive -->
+{% endblock %}

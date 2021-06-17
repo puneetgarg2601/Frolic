@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<section>
+    <header class="main">
+        <h1>{% translate 'Login' %}</h1>
+    </header>
+	<div class="row">
+		<div class="col-6 col-12-small">
+			<form method="post" id="auth_form">
+				{% csrf_token %}
+				{{ form }}
+				<input type="submit" value="{% translate 'Login' %}" class="button primary">
+				<a href="{% url 'password_reset' %}" class="button">{% translate 'Forget Password ?' %}</a>
+				<a href="{% url 'content:user_register' %}" class="button" style="margin-top: 10px;">{% translate 'Create Account' %}</a>
+				</form>
+		</div>
+	</div>
+</section>
+{% endblock content %}

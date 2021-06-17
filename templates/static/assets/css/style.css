@@ -1,0 +1,200 @@
+
+.profile-background {
+    background-image: url(../../images/pic1.jpg);
+    background-size: cover;
+    height: 200px;
+    width: 100%;
+}
+.profile-background::before {
+    content: '';
+    position: absolute;
+    height: 200px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+.container {
+    padding: 0;
+}
+.profile{
+    position: relative;
+    background-color: whitesmoke;
+    margin-top: -150px;
+}
+.profile-main {
+    height: 100px;
+    width: 100%;
+}
+.profile-main > div {
+    float: left;
+}
+.profile-container {
+    width: 20%;
+    height: 100%;
+    position: relative;
+
+}
+.profile-container img{
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.profile-container2 {
+    width: 60%;
+    height: 100%;
+    position: relative;
+}
+.profile-container2 div{
+    padding-left: 10px;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    overflow-wrap: break-word;
+
+}
+.profile-container2 h3, .profile-container2 p{
+    margin:0;
+}
+.profile-container3 {
+    width: 20%;
+    height: 100%;
+    position: relative;
+}
+.profile-container3 i {
+    display: none;
+}
+.profile-container3 a {
+    position: absolute;
+    max-width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+.btn {
+    letter-spacing: 1px;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    max-width: 100%;
+}
+.profile-links {
+    height: 50px;
+    width: 100%;
+    background-color: gray;
+}
+.profile-links a {
+    display:  inline-block;
+    height: 100%;
+    line-height: 50px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 0 15px 0 15px;
+}
+.profile-links a:hover {
+    border-bottom: 3px solid crimson;
+}
+#main > .inner{
+    padding: 0;
+}
+.active {
+    border-bottom: 3px solid crimson;
+}
+.errorlist {
+    color: red;
+}
+
+@media screen and (min-width: 667px) {
+    .profile-background {
+        background-image: url(../../images/pic1.jpg);
+        background-size: cover;
+        height: 200px;
+        width: 100%;
+    }
+    .profile-background::before {
+        content: '';
+        position: absolute;
+        height: 200px;
+        width: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.25);
+    }
+    .container {
+        padding: 0;
+    }
+    .profile{
+        position: relative;
+        background-color: whitesmoke;
+        margin-top: -150px;
+    }
+    .profile-main {
+        height: 100px;
+        width: 100%;
+        /* background-color: gray; */
+        display: flex;
+        flex-direction: row;
+    }
+    .profile-container {
+        width: 100px;
+        height: 100%;
+    }
+    .profile-pic {
+        height: 80%;
+        width: 80%;
+        background-image: url(../../images/profile_pic.jpeg);
+        background-size: cover;
+        position: relative;
+        top: 50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+    }
+    .profile-container2 {
+        flex-grow: 2;
+    }
+    .profile-container2 h3 {
+        margin: 0;
+    }
+    .profile-container2 div {
+        position: relative;
+        top: 50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+    }
+    .profile-container3 {
+        position: relative;
+    }
+    .profile-container3 a {
+        max-width: 100%;
+        position: absolute;
+        top: 50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+    }
+    
+    .profile-links {
+        height: 50px;
+        width: 100%;
+        background-color: gray;
+    }
+    .profile-links a {
+        display:  inline-block;
+        height: 100%;
+        line-height: 50px;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        padding: 0 15px 0 15px;
+    }
+    .profile-links a:hover {
+        border-bottom: 3px solid crimson;
+    }
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h3 class="text-muted">Are you sure?</h3>
+
+        <p class="lead">Are you sure you want to delete the selected Videocast?</p>
+        <form style="display:inline-block" action="" method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-danger" value="Yes, Sure">
+        </form>
+        <a class="button ms-3" href= "{% url 'content:profile' request.user.id 'blog' %}" > No,Take Me Back </a>
+    </div>
+</body>
+</html>

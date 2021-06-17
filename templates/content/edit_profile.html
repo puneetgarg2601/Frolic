@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block css %}
+    <link rel="stylesheet" href="{% static '/assets/css/style.css' %}"/>
+{% endblock css %}
+
+
+{% block wrapper %}
+{% endblock wrapper %}
+{% block sidebar %}
+{% endblock sidebar %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="profile-background"></div>
+        <div class="container profile">
+            <div class="profile-main">
+                <div class="profile-container">
+                    <div class="profile-pic rounded-circle" ></div>
+                </div>
+                <div class="profile-container2">
+                    <div>
+                        {% if user.first_name %}
+                            <h3 style="word-wrap: break-word;"> {{user.first_name}} {{user.last_name}} </h3>
+                        {% else %}
+                            <h3 style="word-wrap: break-word;"> {{user.username}} </h3>
+                        {% endif %}
+
+                        <p style="word-wrap: break-word;"> {{user.email}} </p>
+                    </div>
+                </div>
+                {% if user.id == request.user.id %}
+                    <div class="profile-container3">
+                        <a href="{% url 'content:edit_profile' 1 %}"> <button class="btn btn-sm rounded"><i class="fas fa-pencil-alt me-2"></i>Edit profile</button></a> 
+                    </div>
+                {% endif %}
+            </div>
+            <div class="profile-links">
+                <a class="{{blog}}" href="{% url 'content:profile' 1 'blog' %}">Blogs</a>
+                <a class="{{video}}" href="{% url 'content:profile' 1 'video' %}">Videos</a>
+                <a class="{{audio}}" href="{% url 'content:profile' 1 'audio' %}">Audios</a>
+                <a class="{{skill}}" href="{% url 'content:profile' user.id 'skill' %}">Skills</a>
+                
+            </div>
+                {% block post %}
+                    <div class="container mt-5">
+                        <form action="" method="post">  
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-6 mx-auto">
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            <p {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}> {{ message }} </p>
+                                        {% endfor %}
+                                    {% endif %}
+                                    {% for field in form %}
+                                        
+                                                {{ field.label_tag }} {{ field }} <small class="errorlist">{{ field.errors|striptags }}</small>
+                                    {% endfor %}
+                                    <input type="submit" class="btn mt-3" value="Edit">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                {% endblock post %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

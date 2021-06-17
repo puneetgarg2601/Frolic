@@ -1,0 +1,51 @@
+{% extends 'content/profile.html' %}
+{% load static %}
+{% load i18n %}
+{% block post %}
+    {% if messages %}
+        {% for message in messages %}
+            <p {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %}>
+                {{message}}
+            </p>
+        {% endfor %}
+    {% endif %}
+    <div class="mx-3 pb-3">
+        <section id="archive">
+            <header class="major mt-5">
+                <h2>
+                    {% translate 'Videocast Archive' %}
+                </h2>
+            </header>
+            <div class="posts">
+                {% for object in object_list %}
+                    <article>
+                        <a href="{% url 'content:videocast_single' object.slug object.id %}" class="image" title="{{ object.title }}">
+                            <img src="{{ object.thumbnail.url }}" alt="{{ object.title }}"/>
+                        </a>
+                        <h3>{{ object.title }}</h3>
+                        <p>{{ object.content | safe | truncatewords_html:30 }}</p>
+                        <ul class="actions">
+                            <li>
+                                <a href="{% url 'content:videocast_single' object.slug object.id %}" class="button" title="{{ object.title }}">
+                                    {% translate 'More' %}
+                                </a>
+                            </li>
+                            {% if user.id == request.user.id %}
+                                <li>
+                                    <a href="{% url 'content:edit_videocast' object.slug object.id  %}" class="button" title="{{ object.title }}">
+                                        {% translate 'Edit' %}
+                                    </a>
+                                </li>
+                                <li style="margin-left:auto" >
+                                    <a href="{% url 'content:delete_videocast' object.slug object.id  %}" class="button" title="Delete">
+                                        {% translate 'Delete' %}
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </article>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+{% endblock post %}
