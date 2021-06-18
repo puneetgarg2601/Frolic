@@ -2,6 +2,13 @@
 {% load i18n %}
 
 {% block content %}
+{% if messages %}
+        {% for message in messages %}
+            <p {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %}>
+                {{message}}
+            </p>
+        {% endfor %}
+    {% endif %}
 <section>
     <header class="main">
         <h1>{% translate 'Create Account' %}</h1>

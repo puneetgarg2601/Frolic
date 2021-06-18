@@ -42,6 +42,7 @@
                 <a class="{{video}}" href="{% url 'content:profile' 1 'video' %}">Videos</a>
                 <a class="{{audio}}" href="{% url 'content:profile' 1 'audio' %}">Audios</a>
                 <a class="{{skill}}" href="{% url 'content:profile' user.id 'skill' %}">Skills</a>
+                <a style="float:right;" class="me-3" href="{% url 'content:index' %}">Frolic</a>
                 
             </div>
                 {% block post %}

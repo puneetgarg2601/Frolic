@@ -263,7 +263,7 @@ class EditProfileView(View):
     def get(self, request, id):
         if request.user.id == id:
             form = EditProfileForm(instance=request.user)
-            return render(request, 'content/edit_profile.html', {'form':form})
+            return render(request, 'content/edit_profile.html', {'form':form, 'user':request.user})
 
     def post(self, request, id):
         if request.user.id == id:
@@ -271,7 +271,7 @@ class EditProfileView(View):
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Profile Updated Successfully!! ')
-            return render(request, 'content/edit_profile.html', {'form':form})
+            return render(request, 'content/edit_profile.html', {'form':form, 'user':request.user})
 
 @method_decorator(login_required, name='dispatch')
 class EditBlogView(View):
