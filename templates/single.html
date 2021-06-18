@@ -22,13 +22,13 @@
         {% if object.video %}
             <div >
                 <video class="mx-auto" width="320" height="240" controls>
-                    <source src="{{ object.videosite.url }}" type="video/mp4">
+                    <source src="{{ object.video.url }}" type="video/mp4">
                     
                 </video>
             </div>
         {% endif %}
         {% if object.video_link %}
-            <a href="{{ object.video }}" class="button primary fit icon solid fa-video">{% translate 'Show Video' %}</a>
+            <a href="{{ object.video_link }}" class="button primary fit icon solid fa-video">{% translate 'Show Video' %}</a>
         {% endif %}
 
         {% if object.audio %}
