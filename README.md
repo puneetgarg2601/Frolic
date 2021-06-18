@@ -25,7 +25,7 @@ A free, open-source Blog CMS based on the "Django" and "Editorial" HTML5 theme.
   * Install git,python3, pip3, virtualenv in your operating system
   * Create a development environment ready by using these commands
   
-    git clone https://github.com/puneetgarg2601/Frolic.git		# clone the project
+    git clone https://github.com/puneetgarg2601/Frolic		# clone the project
 
     cd Frolic		                                        # go to the project DIR
 
